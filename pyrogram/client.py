@@ -803,7 +803,7 @@ class Client(Methods):
             else:
                 file.close()
                 file_path = os.path.splitext(temp_file_path)[0]
-                shutil.move(temp_file_path, file_path)
+                shutil.move(temp_file_path if os.path.isfile(temp_file_path) else temp_file_path.replace(".temp",""), file_path)
                 return file_path
 
     async def get_file(
